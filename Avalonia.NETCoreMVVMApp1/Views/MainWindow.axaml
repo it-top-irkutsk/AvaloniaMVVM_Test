@@ -1,0 +1,53 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Avalonia.NETCoreMVVMApp1.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Avalonia.NETCoreMVVMApp1.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Avalonia.NETCoreMVVMApp1">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0">
+            <Label Content="Фамилия"/>
+            <ListBox 
+                Items="{Binding Persons}"
+                SelectedItem="{Binding SelectedPerson}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border>
+                            <TextBlock Text="{Binding LastName}"/>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="ID"/>
+                <TextBox Text="{Binding SelectedPerson.Id}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Фамилия"/>
+                <TextBox Text="{Binding SelectedPerson.LastName}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Имя"/>
+                <TextBox Text="{Binding SelectedPerson.FirstName}"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+
+
+</Window>
