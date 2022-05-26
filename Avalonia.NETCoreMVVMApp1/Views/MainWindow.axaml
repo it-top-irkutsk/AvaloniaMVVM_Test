@@ -6,45 +6,60 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Avalonia.NETCoreMVVMApp1.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Avalonia.NETCoreMVVMApp1">
+        Title="Avalonia.Test"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent"
+        ExtendClientAreaToDecorationsHint="True">
 
     <Design.DataContext>
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="2*" />
-        </Grid.ColumnDefinitions>
+    <Window.Styles>
+        <Style Selector="Label.label_input">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
 
+        <Style Selector="TextBox.input">
+            <Setter Property="Width" Value="300" />
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+
+        <Style Selector="ListBox">
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid ColumnDefinitions="*, 2*">
         <StackPanel Grid.Column="0">
-            <Label Content="Фамилия"/>
-            <ListBox 
+            <Label Content="Фамилия" />
+            
+            <ListBox
                 Items="{Binding Persons}"
                 SelectedItem="{Binding SelectedPerson}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border>
-                            <TextBlock Text="{Binding LastName}"/>
+                            <TextBlock Text="{Binding LastName}" />
                         </Border>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
-        
+
         <StackPanel Grid.Column="1">
             <StackPanel Orientation="Horizontal">
-                <Label Content="ID"/>
-                <TextBox Text="{Binding SelectedPerson.Id}"/>
+                <Label Content="ID" Classes="label_input" />
+                <TextBox Text="{Binding SelectedPerson.Id}" Classes="input" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Фамилия"/>
-                <TextBox Text="{Binding SelectedPerson.LastName}"/>
+                <Label Content="Фамилия" Classes="label_input" />
+                <TextBox Text="{Binding SelectedPerson.LastName}" Classes="input" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Content="Имя"/>
-                <TextBox Text="{Binding SelectedPerson.FirstName}"/>
+                <Label Content="Имя" Classes="label_input" />
+                <TextBox Text="{Binding SelectedPerson.FirstName}" Classes="input" />
             </StackPanel>
         </StackPanel>
     </Grid>
